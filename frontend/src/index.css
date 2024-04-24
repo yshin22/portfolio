@@ -1,9 +1,20 @@
+@import url(https://db.onlinewebfonts.com/c/653d9381828e9577fb1e417dc047f89d?family=SuisseIntl-SemiBold);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "SuisseIntl-SemiBold";
+    src: url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.eot");
+    src: url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/653d9381828e9577fb1e417dc047f89d.svg#SuisseIntl-SemiBold")format("svg");
+}
+
 * {
-    font-family: "Times New Roman", Times, serif;
+    font-family: "SuisseIntl-SemiBold";
 }
 
 @layer components {
