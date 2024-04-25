@@ -1,43 +1,56 @@
-import React from 'react'
+import { useRef } from "react";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 
 const HomeScreen = () => {
+
+    gsap.registerPlugin(useGSAP, ScrollTrigger);
+
+    const container = useRef();
+
+    useGSAP(() => {
+        const tl = gsap.timeline();
+        tl.from(".phrase", {y:160, stagger: 0.1, duration: 0.8, ease: "back"})
+        // gsap code here...
+        gsap.to(".phrase", {
+            scrollTrigger: {
+                trigger: ".phrase",
+                start: "top center",
+                end: "top 100px",
+                markers: "true",
+                scrub: 1,
+                // pin: true,
+            },
+            x: 400,
+            duration: 3,
+
+        }); // <-- automatically reverted
+      
+      }, { scope: container }); // <-- scope is for selector text (optional)
+
   return (
-    <div class="flex justify-around h-full">
-        <div class="flex flex-col justify-evenly">
-            <div class="flex w-fit">
-                <div class="text-9xl mr-1">
-                    Y
-                </div>
-                <div class="mt-auto mb-3 text-4xl">
-                    EOUNG
-                </div>
+
+    <div>
+        <div ref={container} className="flex flex-col justify-center h-screen">
+            <div className="phrase w-fit text-8xl">
+                FULL STACK
             </div>
-            <div class="flex w-fit">
-                <div class="text-9xl mr-1">
-                    M
-                </div>
-                <div class="mt-auto mb-3 text-4xl">
-                    IN
-                </div>
+            <div className="phrase w-fit text-8xl">
+                WEB DEV
             </div>
-            <div class="flex w-fit">
-                <div class="text-9xl mr-1">
-                    S
-                </div>
-                <div class="mt-auto mb-3 text-4xl">
-                    HIN
-                </div>
+            <div className="phrase w-fit text-8xl">
+                CAR ENTHUSIAST 
+            </div>
+            <div className="phrase w-fit text-8xl">
+                DOG DAD
             </div>
         </div>
-        <div>
-            <div>
-                Full Stack
-            </div>
-            <div>
-                Developer
-            </div>
+        <div className="h-screen">
 
         </div>
+
     </div>
   )
 }

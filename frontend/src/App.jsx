@@ -1,14 +1,13 @@
-import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import './App.css'
-import NavBar from './componenets/NavBar'
+import Header from './componenets/Header'
 import Footer from './componenets/Footer'
 
 function App() {
   return (
     <>
-      <NavBar/>
-      <div class='h-screen'>
+      <Header/>
+      <div className='h-full'>
         <Outlet/>
       </div>
       <Footer/>

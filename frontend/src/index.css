@@ -17,11 +17,3 @@
     font-family: "SuisseIntl-SemiBold";
 }
 
-@layer components {
-    .card {
-        @apply flex items-center justify-center;
-        width: 300px;
-        height: 100px;
-        background-color: theme("colors.twitter-blue");
-    }
-}
