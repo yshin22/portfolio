@@ -18,7 +18,7 @@ const Header = () => {
     }, { scope: container }); // <-- scope is for selector text (optional)
 
   return (
-    <header ref={container} className=" flex justify-around p-10 w-full z-110 fixed top-0 left-0">
+    <header ref={container} className=" flex justify-around p-10 w-full z-110 fixed top-0 left-0 z-50">
       <div className="phrase t1 m-2 text-xl">
         YEOUNGMIN SHIN
       </div>
