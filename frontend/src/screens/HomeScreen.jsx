@@ -21,9 +21,9 @@ const HomeScreen = () => {
                 start: "clamp(top center)",
                 end: "bottom 100px",
                 scrub: 1,
-                markers: true,
+                // markers: true,
             },
-            yPercent: 100
+            yPercent: 180
         })
 
         const tl = gsap.timeline();
@@ -40,6 +40,18 @@ const HomeScreen = () => {
             stagger: 0.1,
         },)
         tl.from(".phrase", {y:160, duration: 0.8, ease: "back", stagger: 0.1})
+
+        gsap.from(".headline", {
+            scrollTrigger: {
+                trigger: ".headline",
+                start: "clamp(top bottom)",
+                end: "+=500",
+                markers: "true",
+                scrub: 1,
+            },
+            xPercent: -100,
+            duration: 3,
+        })
 
 
 
@@ -118,8 +130,17 @@ const HomeScreen = () => {
             </div>
         </div>
 
-        <div className="about-me h-screen">
+        <div className="headline text-transparent text-9xl flex justify-start">
+            ABOUT
+        </div>
 
+        <div className="about-me h-screen flex flex-col">
+            <span className="flex justify-end">Hi, my name is Yeoungmin, a cretive Full Stack Developer</span>
+            <span className="flex justify-end">based in Fairfax, VA</span>
+        </div>
+
+        <div className="headline text-transparent text-9xl flex justify-start">
+            WORKS
         </div>
 
         <div className="flex flex-col justify-center">
