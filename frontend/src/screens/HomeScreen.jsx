@@ -35,15 +35,15 @@ const HomeScreen = () => {
                 // markers: "true",
                 scrub: 1,
             },
-            xPercent: 100,
+            xPercent: 200,
             duration: 3,
             stagger: 0.1,
         },)
         tl.from(".phrase", {y:160, duration: 0.8, ease: "back", stagger: 0.1})
 
-        gsap.from(".headline", {
+        gsap.from(".about", {
             scrollTrigger: {
-                trigger: ".headline",
+                trigger: ".about",
                 start: "clamp(top bottom)",
                 end: "+=500",
                 markers: "true",
@@ -53,28 +53,17 @@ const HomeScreen = () => {
             duration: 3,
         })
 
-
-
-        // let sections = gsap.utils.toArray(".panel");
-
-        // sections.forEach((section, i) => {
-        //     gsap.to(section, {
-        //         xPercent: -100 * (sections.length - 1),
-        //         ease: "none",
-        //         scrollTrigger: {
-        //           trigger: section,
-        //           pin: true,
-        //           scrub: 1,
-        //           snap: 1 / (sections.length - 1),
-        //           start: "center center",
-        //           // base vertical scrolling on how wide the container is so it feels more natural.
-        //           end: "bottom 100px",
-        //         //   markers: "true",
-        //         }
-        //     });
-        // })
-
-        const panel_tl = gsap.timeline();
+        gsap.from(".works", {
+            scrollTrigger: {
+                trigger: ".works",
+                start: "clamp(top bottom)",
+                end: "+=500",
+                markers: "true",
+                scrub: 1,
+            },
+            xPercent: 100,
+            duration: 3,
+        })
 
         let panels = gsap.utils.toArray(".panel");
 
@@ -88,7 +77,7 @@ const HomeScreen = () => {
                         end: "top center",
                         // markers: "true",
                         scrub: 1,
-                        snap: 1 / panels.length - 1,
+                        // snap: 1 / panels.length - 1,
                     },
                 })
             ) : (
@@ -100,7 +89,7 @@ const HomeScreen = () => {
                         end: "top center",
                         // markers: "true",
                         scrub: 1,
-                        snap: 1 / panels.length - 1,
+                        // snap: 1 / panels.length - 1,
                     },
                 })
             )
@@ -130,27 +119,27 @@ const HomeScreen = () => {
             </div>
         </div>
 
-        <div className="headline text-transparent text-9xl flex justify-start">
+        <div className="about headline text-transparent text-9xl flex justify-start">
             ABOUT
         </div>
 
         <div className="about-me h-screen flex flex-col">
-            <span className="flex justify-end">Hi, my name is Yeoungmin, a cretive Full Stack Developer</span>
+            <span className="flex justify-end text-2xl">Hi, my name is Yeoungmin, a creative Full Stack Developer</span>
             <span className="flex justify-end">based in Fairfax, VA</span>
         </div>
 
-        <div className="headline text-transparent text-9xl flex justify-start">
+        <div className="works headline text-transparent text-9xl flex justify-end">
             WORKS
         </div>
 
-        <div className="flex flex-col justify-center">
-            <div className="panel text-2xl flex justify-start m-2 h-28 items-center">
-                FRAME COFFE ROASTERS
+        <div className="flex flex-col justify-evenly h-screen">
+            <div className="panel text-6xl flex justify-start m-2 h-28 items-center">
+                FRAME COFFE 
             </div>
-            <div className="panel text-2xl flex justify-end m-2 yellow h-28 items-center">
+            <div className="panel text-6xl flex justify-end m-2 yellow h-28 items-center">
                 YMSHIN.COM
             </div>
-            <div className="panel text-2xl flex justify-start m-2 yellow h-28 items-center">
+            <div className="panel text-6xl flex justify-start m-2 yellow h-28 items-center">
                 GEOCANVAS.IO
             </div>
         </div>
