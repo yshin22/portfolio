@@ -14,7 +14,7 @@ const HomeScreen = () => {
     useGSAP(() => {
 
         const profTl = gsap.timeline();
-        profTl.from(".prof-pic", {xPercent: -100, duration: 0.8, ease: "none"})
+        profTl.from(".prof-pic", {xPercent: -100, duration: 0.3, ease: "none"})
         profTl.to(".prof-pic", {
             scrollTrigger: {
                 trigger: ".prof-pic",
@@ -23,7 +23,7 @@ const HomeScreen = () => {
                 scrub: 1,
                 // markers: true,
             },
-            yPercent: 180
+            yPercent: 300
         })
 
         const tl = gsap.timeline();
@@ -46,7 +46,7 @@ const HomeScreen = () => {
                 trigger: ".about",
                 start: "clamp(top bottom)",
                 end: "+=500",
-                markers: "true",
+                // markers: "true",
                 scrub: 1,
             },
             xPercent: -100,
@@ -58,7 +58,7 @@ const HomeScreen = () => {
                 trigger: ".works",
                 start: "clamp(top bottom)",
                 end: "+=500",
-                markers: "true",
+                // markers: "true",
                 scrub: 1,
             },
             xPercent: 100,
@@ -92,9 +92,25 @@ const HomeScreen = () => {
                         // snap: 1 / panels.length - 1,
                     },
                 })
-            )
-        
+            )      
         })
+
+        gsap.from(".line span", 1.8, {
+            scrollTrigger: {
+                trigger: ".line span",
+                scrub: 2,
+                start: "-=200 center",
+                end: "-=200 center",
+                markers: "true"
+            },
+            y: 100,
+            ease: "power3.out",
+            duration: 5,
+            delay: 1,
+            stagger: 0.5,
+          })
+
+
       
       }, { scope: container }); // <-- scope is for selector text (optional)
 
@@ -102,7 +118,9 @@ const HomeScreen = () => {
 
     <div ref={container}>
         <div className="flex justify-center h-screen items-center">
-            <img src={profPic} alt="my prof pic" className="prof-pic max-w-80 m-4"/>
+            <div className="frame overflow-hidden">
+                <img src={profPic} alt="my prof pic" className="prof-pic max-w-80 m-4"/>
+            </div>
             <div>
                 <div className="phrase text-start text-8xl hover:text-red-500 cursor-pointer">
                     FULL STACK 
@@ -123,9 +141,20 @@ const HomeScreen = () => {
             ABOUT
         </div>
 
-        <div className="about-me h-screen flex flex-col justify-center bg-white">
-            <span className="flex  text-9xl z-50">Hi, my name is Yeoungmin, a creative Full Stack Developer</span>
-            <span className="flex justify-end text-2xl">based in Fairfax, VA</span>
+        <div className="about-me h-screen flex flex-col justify-center">
+
+            <div className="line text-7xl z-36 h-20 relative overflow-hidden flex justify-center">
+                <span className="absolute">
+                    Hi, my name is Yeoungmin,
+                </span>
+            </div>
+            <div className="line text-7xl z-36 h-20 relative overflow-hidden flex justify-center">
+                <span className="absolute">
+                    a creative Full Stack Developer
+                </span>
+            </div>
+
+            {/* <div className="flex justify-end text-2xl">based in Fairfax, VA</div> */}
         </div>
 
         <div className="works headline text-transparent text-9xl flex justify-end">
