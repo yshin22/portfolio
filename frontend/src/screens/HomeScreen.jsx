@@ -3,6 +3,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import profPic from "../assets/images/ym_profpic.jpeg";
 import '../App.css'
+import frame from "../assets/images/frame.webp";
+import ym from "../assets/images/my_site.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,24 +24,51 @@ const HomeScreen = () => {
                         stagger: 0.1,
                     });
 
+                    // // Animating the "ABOUT" section
+                    // gsap.from(".about", {
+                    //     scrollTrigger: {
+                    //         trigger: ".about",
+                    //         start: "top bottom",
+                    //         end: "+=500",
+                    //         scrub: 1,
+                    //     },
+                    //     xPercent: -100,
+                    //     duration: 3,
+                    // });
+
+                    // Animating the "WORKS" section
+                    // gsap.from(".works", {
+                    //     scrollTrigger: {
+                    //         trigger: ".works",
+                    //         start: "top bottom",
+                    //         end: "+=500",
+                    //         scrub: 1,
+                    //         // markers: true
+
+                    //     },
+                    //     xPercent: 100,
+                    //     duration: 3,
+                    // });
+
+                    
                     // Animating the "ABOUT" section
                     gsap.from(".about", {
                         scrollTrigger: {
                             trigger: ".about",
                             start: "top bottom",
-                            end: "+=500",
+                            end: "top +=700",
                             scrub: 1,
+                            // markers: true,
                         },
                         xPercent: -100,
                         duration: 3,
                     });
 
-                    // Animating the "WORKS" section
                     gsap.from(".works", {
                         scrollTrigger: {
                             trigger: ".works",
                             start: "top bottom",
-                            end: "+=500",
+                            end: "top +=700",
                             scrub: 1,
                             // markers: true
 
@@ -54,13 +83,27 @@ const HomeScreen = () => {
                             trigger: ".line span",
                             scrub: 2,
                             start: "top bottom",
-                            end: "-=250 center",
-                            markers: true
+                            end: "-=200 center",
+                            // markers: true
                         },
                         y: 100,
                         ease: "power3.out",
                         duration: 5,
                         stagger: 0.5,
+                    });
+
+                    gsap.from(".contact", { 
+                        y: 160, 
+                        duration: 0.8, 
+                        ease: "back", 
+                        stagger: 0.1,
+                        scrollTrigger: {
+                            trigger: ".contact",
+                            start: "top bottom",
+                            end: "top +=700",
+                            scrub: 1,
+                            // markers: true,
+                        }
                     });
                 })
 
@@ -70,7 +113,7 @@ const HomeScreen = () => {
                     const phraseScrollTl = gsap.timeline({
                         scrollTrigger: {
                             trigger: ".phrase",
-                            start: "top center",
+                            start: "+=200 center",
                             end: "bottom",
                             scrub: 1,
                             // markers: true,
@@ -134,11 +177,11 @@ const HomeScreen = () => {
                     // Animating panels
                     gsap.utils.toArray(".panel").forEach((panel, i) => {
                         gsap.from(panel, {
-                            xPercent: i % 2 === 0 ? 105 : -105,
+                            xPercent: i % 2 === 0 ? 110 : -110,
                             scrollTrigger: {
                                 trigger: panel,
-                                start: "top center",
-                                end: "bottom center",
+                                start: "center bottom",
+                                end: "center +=700",
                                 scrub: 1,
                                 // markers: true
 
@@ -155,7 +198,7 @@ const HomeScreen = () => {
     }, []);
 
     return (
-        <div ref={container} className="container">
+        <div ref={container} className="container mx-auto px-4">
             <div className="flex justify-center h-screen items-center">
                 <div className="frame overflow-hidden hidden sm:block">
                     <img src={profPic} alt="my prof pic" className="prof-pic max-w-80 m-4" />
@@ -194,22 +237,26 @@ const HomeScreen = () => {
             </div>
 
             <div className="flex flex-col justify-evenly h-screen">
-                <div className="panel text-4xl sm:text-6xl flex justify-start m-2 h-28 items-center">
-                    &lt; FRAME COFFE
+                <div className="panel text-4xl sm:text-6xl flex-col justify-start m-2 h-28 items-center">
+                    FRAME COFFE
+                    <div>
+                        <img src={frame} alt="frame coffee" />
+                    </div>
                 </div>
-                <div className="panel text-4xl sm:text-6xl flex justify-end m-2 yellow h-28 items-center">
-                    YMSHIN.COM &gt;
-                </div>
-                <div className="panel text-4xl sm:text-6xl flex justify-start m-2 yellow h-28 items-center">
-                    &lt; GEOCANVAS.IO
+                <div className="panel text-4xl sm:text-6xl flex-col justify-end m-2 yellow h-28 items-center">
+                    YMSHIN.COM
+                    <div>
+                        <img src={ym} alt="frame coffee" />
+                    </div>
                 </div>
             </div>
 
-            <section>
-                <section className="h-screen "></section>
-                <section className="h-screen "></section>
-                <section className="h-screen "></section>
-            </section>
+            <div className="contact headline text-transparent text-7xl sm:text-10xl flex justify-start">
+                CONNECT 
+            </div>
+            <div className="contact headline text-transparent text-7xl sm:text-10xl flex justify-start">
+                WITH ME
+            </div>
         </div>
     );
 };
