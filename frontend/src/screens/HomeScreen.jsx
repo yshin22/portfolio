@@ -24,6 +24,22 @@ const HomeScreen = () => {
                         stagger: 0.1,
                     });
 
+                    const textPath = document.querySelector(".text-path");
+                    const textWidth = textPath.offsetWidth; // Total width of the scrolling text
+                    // const containerWidth = document.querySelector(".overflow-hidden").offsetWidth;
+                
+                    // Set initial position
+                    gsap.set(textPath, { x: 0 });
+
+                    const marquee = gsap.timeline({ repeat: -1 });
+  
+                    marquee.to(".text-path", {
+                        x: -textWidth / 2,
+                        duration: 10,
+                        ease: "none",
+                        repeat: -1,
+                    });
+
                     // // Animating the "ABOUT" section
                     // gsap.from(".about", {
                     //     scrollTrigger: {
@@ -123,7 +139,7 @@ const HomeScreen = () => {
                     phraseScrollTl.to(".phrase", {
                         xPercent: 200,
                         duration: 3,
-                        stagger: 0.1,
+                        stagger: 0.2,
                     });
 
                     const tl = gsap.timeline()
@@ -236,25 +252,47 @@ const HomeScreen = () => {
                 WORKS
             </div>
 
-            <div className="flex flex-col justify-evenly h-screen">
-                <div className="panel text-4xl sm:text-6xl flex-col justify-start m-2 h-28 items-center">
-                    FRAME COFFE
-                    <div>
-                        <img src={frame} alt="frame coffee" />
-                    </div>
+            {/* <div className="overflow-hidden whitespace-nowrap">
+                <div className="animate-marquee inline-block">
+                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
                 </div>
-                <div className="panel text-4xl sm:text-6xl flex-col justify-end m-2 yellow h-28 items-center">
-                    YMSHIN.COM
-                    <div>
-                        <img src={ym} alt="frame coffee" />
-                    </div>
+            </div> */}
+
+            <div className="overflow-hidden relative h-16">
+                <div className="text-path absolute flex space-x-4 whitespace-nowrap">
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
                 </div>
             </div>
 
-            <div className="contact headline text-transparent text-7xl sm:text-10xl flex justify-start">
+            <div className="flex flex-col justify-evenly h-screen">
+                <div className="panel text-4xl sm:text-6xl flex-col m-2 h-20 items-center">
+                    <div className="text-start">FRAME COFFEE</div>
+                    {/* <div>
+                        <img src={frame} alt="frame coffee" />
+                    </div> */}
+                </div>
+                <div className="panel text-4xl sm:text-6xl flex-col m-2 yellow h-28 items-center">
+                    <div className="text-end">YMSHIN.COM</div>
+                    {/* <div>
+                        <img src={ym} alt="frame coffee" />
+                    </div> */}
+                </div>
+            </div>
+
+            <div className="contact headline text-transparent text-7xl sm:text-9xl flex justify-start">
                 CONNECT 
             </div>
-            <div className="contact headline text-transparent text-7xl sm:text-10xl flex justify-start">
+            <div className="contact headline text-transparent text-7xl sm:text-9xl flex justify-start">
                 WITH ME
             </div>
         </div>

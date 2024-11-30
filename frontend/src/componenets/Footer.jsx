@@ -22,7 +22,7 @@ const Footer = () => {
           start: "top bottom",
           end: "top +=700",
           scrub: 1,
-          markers: true,
+          // markers: true,
         }
       })
 
