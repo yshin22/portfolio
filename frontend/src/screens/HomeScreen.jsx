@@ -73,7 +73,7 @@ const HomeScreen = () => {
                             trigger: ".about",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 1,
+                            scrub: 0.5,
                             // markers: true,
                         },
                         xPercent: -100,
@@ -85,7 +85,7 @@ const HomeScreen = () => {
                             trigger: ".works",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 1,
+                            scrub: 0.5,
                             // markers: true
 
                         },
@@ -97,7 +97,7 @@ const HomeScreen = () => {
                     gsap.from(".line span", {
                         scrollTrigger: {
                             trigger: ".line span",
-                            scrub: 2,
+                            scrub: 1,
                             start: "top bottom",
                             end: "-=200 center",
                             // markers: true
@@ -117,7 +117,7 @@ const HomeScreen = () => {
                             trigger: ".contact",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 1,
+                            scrub: 0.5,
                             // markers: true,
                         }
                     });
@@ -164,9 +164,8 @@ const HomeScreen = () => {
                                 trigger: panel,
                                 start: "top center",
                                 end: "bottom center",
-                                scrub: 1,
+                                scrub: 0.5,
                                 // markers: true
-
                             },
                         });
                     });
@@ -180,7 +179,7 @@ const HomeScreen = () => {
                             trigger: ".phrase",
                             start: "bottom center",
                             end: "bottom",
-                            scrub: 1,
+                            scrub: 0.5,
                             // markers: true,
                         },
                     });
@@ -198,7 +197,7 @@ const HomeScreen = () => {
                                 trigger: panel,
                                 start: "center bottom",
                                 end: "center +=700",
-                                scrub: 1,
+                                scrub: 0.5,
                                 // markers: true
 
                             },
@@ -251,14 +250,6 @@ const HomeScreen = () => {
             <div className="works headline text-transparent text-7xl sm:text-10xl flex justify-end">
                 WORKS
             </div>
-
-            {/* <div className="overflow-hidden whitespace-nowrap">
-                <div className="animate-marquee inline-block">
-                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold mx-4">Infinite Scrolling Text</span>
-                </div>
-            </div> */}
 
             <div className="overflow-hidden relative h-16">
                 <div className="text-path absolute flex space-x-4 whitespace-nowrap">
