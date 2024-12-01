@@ -4,3 +4,7 @@ body, html {
 }
 
 
+.phrase, .text-path, .about, .works, .line span, .contact, .panel {
+  will-change: transform;
+}
+

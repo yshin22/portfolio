@@ -22,6 +22,9 @@ const HomeScreen = () => {
                         duration: 0.8, 
                         ease: "back", 
                         stagger: 0.1,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     const textPath = document.querySelector(".text-path");
@@ -38,6 +41,9 @@ const HomeScreen = () => {
                         duration: 10,
                         ease: "none",
                         repeat: -1,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     // // Animating the "ABOUT" section
@@ -73,11 +79,14 @@ const HomeScreen = () => {
                             trigger: ".about",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 0.5,
+                            scrub: 1,
                             // markers: true,
                         },
                         xPercent: -100,
                         duration: 3,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     gsap.from(".works", {
@@ -85,19 +94,22 @@ const HomeScreen = () => {
                             trigger: ".works",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 0.5,
+                            scrub: 1,
                             // markers: true
 
                         },
                         xPercent: 100,
                         duration: 3,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     // Animating lines
                     gsap.from(".line span", {
                         scrollTrigger: {
                             trigger: ".line span",
-                            scrub: 1,
+                            scrub: 2,
                             start: "top bottom",
                             end: "-=200 center",
                             // markers: true
@@ -106,6 +118,9 @@ const HomeScreen = () => {
                         ease: "power3.out",
                         duration: 5,
                         stagger: 0.5,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     gsap.from(".contact", { 
@@ -117,9 +132,12 @@ const HomeScreen = () => {
                             trigger: ".contact",
                             start: "top bottom",
                             end: "top +=700",
-                            scrub: 0.5,
+                            scrub: 1,
                             // markers: true,
-                        }
+                        },
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
                 })
 
@@ -164,7 +182,7 @@ const HomeScreen = () => {
                                 trigger: panel,
                                 start: "top center",
                                 end: "bottom center",
-                                scrub: 0.5,
+                                scrub: 1,
                                 // markers: true
                             },
                         });
@@ -179,7 +197,7 @@ const HomeScreen = () => {
                             trigger: ".phrase",
                             start: "bottom center",
                             end: "bottom",
-                            scrub: 0.5,
+                            scrub: 1,
                             // markers: true,
                         },
                     });
@@ -187,6 +205,9 @@ const HomeScreen = () => {
                         xPercent: 200,
                         duration: 3,
                         stagger: 0.1,
+                        onComplete: () => {
+                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                          }
                     });
 
                     // Animating panels
@@ -197,10 +218,13 @@ const HomeScreen = () => {
                                 trigger: panel,
                                 start: "center bottom",
                                 end: "center +=700",
-                                scrub: 0.5,
+                                scrub: 1,
                                 // markers: true
 
                             },
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
+                              }
                         });
                     });
                   });
