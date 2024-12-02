@@ -30,11 +30,11 @@ const Footer = () => {
 
   return (
     <div ref={container} className="">
-      <div className="px-4 flex-col mt-2 border-t-2 border-black h-40 bg-black text-white">
+      <div className="px-4 flex flex-col mt-2 border-t-2 border-black h-40 bg-black text-white justify-between">
         <div className="m-2">
           Want to get connected? Shoot me an email!
         </div>
-        <div className="m-2">
+        <div className="mx-2 mb-5">
           <span>Email .</span>
           <span> LinkedIn . </span>
           <span>Github</span>

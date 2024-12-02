@@ -18,8 +18,8 @@ const HomeScreen = () => {
 
                 mm.add(
                     {
-                        isDesktop: `(min-width: 1024px)`,
-                        isLaptop: `(max-width: 1023px)`,
+                        isDesktop: `(min-width: ${breakPoint}px)`,
+                        // isLaptop: `(max-width: 1023px)`,
                         isMobile: `(max-width: ${breakPoint - 1}px)`,
                     },
                     (context) => {
@@ -36,7 +36,7 @@ const HomeScreen = () => {
                                 // markers: true
     
                             },
-                            yPercent: isDesktop ? 250 : 150,
+                            yPercent: 250,
                         })
 
                         gsap.from(".phrase", { 
@@ -52,10 +52,10 @@ const HomeScreen = () => {
                         const phraseScrollTl = gsap.timeline({
                             scrollTrigger: {
                                 trigger: ".phrase",
-                                start: isDesktop ? "bottom +=500" : "+=100 +=300",
+                                start: isDesktop ? "bottom 20%" : "+=100 +=300",
                                 end: isDesktop ? "bottom" : "bottom top",
                                 scrub: 1,
-                                markers: true,
+                                // markers: true,
                             },
                         });
     
@@ -121,7 +121,7 @@ const HomeScreen = () => {
                             scrollTrigger: {
                                 trigger: ".contact",
                                 start: "top bottom",
-                                end: "top +=700",
+                                end: "top bottom",
                                 scrub: 1,
                                 // markers: true,
                             },
@@ -175,15 +175,12 @@ const HomeScreen = () => {
     return (
         <div ref={container} className="container mx-auto px-4">
             <div className="flex justify-center h-screen items-center">
-                <div className="frame hidden md:block">
+                <div className="frame overflow-hidden hidden md:block">
                     <img src={profPic} alt="my prof pic" className="prof-pic max-w-60 lg:max-w-80 m-4" />
                 </div>
                 <div>
                     <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
-                        DEVELOPER
-                    </div>
-                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
-                        WEB DEV
+                        CREATIVE <br /> DEVELOPER
                     </div>
                     <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
                         CAR ENTHUSIAST
@@ -194,32 +191,49 @@ const HomeScreen = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col h-96 md:h-screen">
+            <div className="flex flex-col md:h-screen">
                 <div className="about headline text-transparent text-7xl md:text-9xl lg:text-10xl flex justify-start">
                     ABOUT
                 </div>
 
-                <div className="about-me flex flex-col flex-grow justify-center">
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                <div className="about-me flex flex-col flex-grow justify-center px-4 my-5 md:my-0">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
                         <span className="absolute">Hi, my name is Yeoungmin,</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
-                        <span className="absolute">a creative Full Stack Developer</span>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">a creative developer </span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
-                        <span className="absolute">Hi, my name is Yeoungmin,</span>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">crafting memorable user experiences</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
-                        <span className="absolute">a creative Full Stack Developer</span>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">and functionality to websites</span>
                     </div>
+                    <br />
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">I started with vanilla Javascript,</span>
+                    </div>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">messed around with css animations,</span>
+                    </div>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">did backend-dev from scratch, </span>
+                    </div>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">and exploring possibilities</span>
+                    </div>
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute"> with GSAP and Three.js</span>
+                    </div>
+
                 </div>
             </div>
 
-            <div className="works headline text-transparent text-7xl sm:text-8xl md:text-9xl lg:text-10xl flex justify-end my-4">
+            <div className="works headline text-transparent text-7xl sm:text-8xl md:text-9xl lg:text-10xl flex justify-end">
                 WORKS
             </div>
 
-            <div className="flex flex-col justify-evenly h-screen md:h-auto">
+            <div className="flex flex-col justify-evenly h-screen md:h-auto md:mb-5">
                 <div className="panel text-3xl sm:text-4xl md:text-5xl flex my-4 justify-start">
                     <div className="max-w-4xl flex flex-col">
                         <div className="text-start">FRAME COFFEE</div>
