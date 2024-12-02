@@ -141,7 +141,7 @@ const HomeScreen = () => {
                             start: "bottom center",
                             end: "bottom",
                             scrub: 1,
-                            markers: true
+                            // markers: true
 
                         },
                         yPercent: 250,
