@@ -29,12 +29,12 @@ const Footer = () => {
   }, { scope: container });
 
   return (
-    <div ref={container}>
-      <div className="container mx-auto px-4 flex-col mt-2 border-t-2 border-black h-40">
-        <div className="">
+    <div ref={container} className="">
+      <div className="px-4 flex-col mt-2 border-t-2 border-black h-40 bg-black text-white">
+        <div className="m-2">
           Want to get connected? Shoot me an email!
         </div>
-        <div className="">
+        <div className="m-2">
           <span>Email .</span>
           <span> LinkedIn . </span>
           <span>Github</span>

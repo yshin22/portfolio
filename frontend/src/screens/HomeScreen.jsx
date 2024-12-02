@@ -46,33 +46,6 @@ const HomeScreen = () => {
                           }
                     });
 
-                    // // Animating the "ABOUT" section
-                    // gsap.from(".about", {
-                    //     scrollTrigger: {
-                    //         trigger: ".about",
-                    //         start: "top bottom",
-                    //         end: "+=500",
-                    //         scrub: 1,
-                    //     },
-                    //     xPercent: -100,
-                    //     duration: 3,
-                    // });
-
-                    // Animating the "WORKS" section
-                    // gsap.from(".works", {
-                    //     scrollTrigger: {
-                    //         trigger: ".works",
-                    //         start: "top bottom",
-                    //         end: "+=500",
-                    //         scrub: 1,
-                    //         // markers: true
-
-                    //     },
-                    //     xPercent: 100,
-                    //     duration: 3,
-                    // });
-
-                    
                     // Animating the "ABOUT" section
                     gsap.from(".about", {
                         scrollTrigger: {
@@ -165,23 +138,23 @@ const HomeScreen = () => {
                     .to(".prof-pic", {
                         scrollTrigger: {
                             trigger: ".prof-pic",
-                            start: "center",
+                            start: "bottom center",
                             end: "bottom",
                             scrub: 1,
-                            // markers: true
+                            markers: true
 
                         },
-                        yPercent: 300,
+                        yPercent: 250,
                     })
 
                     // Animating panels
                     gsap.utils.toArray(".panel").forEach((panel, i) => {
                         gsap.from(panel, {
-                            xPercent: i % 2 === 0 ? 100 : -100,
+                            xPercent: i % 2 === 0 ? 150 : -150,
                             scrollTrigger: {
                                 trigger: panel,
                                 start: "top center",
-                                end: "bottom center",
+                                end: "center center",
                                 scrub: 1,
                                 // markers: true
                             },
@@ -239,7 +212,7 @@ const HomeScreen = () => {
     return (
         <div ref={container} className="container mx-auto px-4">
             <div className="flex justify-center h-screen items-center">
-                <div className="frame overflow-hidden hidden sm:block">
+                <div className="frame hidden sm:block">
                     <img src={profPic} alt="my prof pic" className="prof-pic max-w-80 m-4" />
                 </div>
                 <div>
@@ -258,49 +231,79 @@ const HomeScreen = () => {
                 </div>
             </div>
 
-            <div className="about headline text-transparent text-7xl sm:text-10xl flex justify-start">
-                ABOUT
+            <div className="flex flex-col h-96 md:h-screen">
+                <div className="about headline text-transparent text-7xl sm:text-10xl flex justify-start">
+                    ABOUT
+                </div>
+
+                <div className="about-me flex flex-col flex-grow justify-center">
+                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">Hi, my name is Yeoungmin,</span>
+                    </div>
+                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">a creative Full Stack Developer</span>
+                    </div>
+                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">Hi, my name is Yeoungmin,</span>
+                    </div>
+                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                        <span className="absolute">a creative Full Stack Developer</span>
+                    </div>
+                </div>
             </div>
 
-            <div className="about-me h-96 md:h-screen  flex flex-col justify-center">
-                <div className="line text-xl sm:text-7xl z-36 h-20 relative overflow-hidden flex justify-center">
-                    <span className="absolute">Hi, my name is Yeoungmin,</span>
-                </div>
-                <div className="line text-xl sm:text-7xl z-36 h-20 relative overflow-hidden flex justify-center">
-                    <span className="absolute">a creative Full Stack Developer</span>
-                </div>
-            </div>
-
-            <div className="works headline text-transparent text-7xl sm:text-10xl flex justify-end">
+            <div className="works headline text-transparent text-7xl sm:text-10xl flex justify-end my-4">
                 WORKS
             </div>
 
-            <div className="overflow-hidden relative h-16">
-                <div className="text-path absolute flex space-x-4 whitespace-nowrap">
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
-                    <span className="text-2xl font-bold">Infinite Scrolling Text</span>
+            <div className="flex flex-col justify-evenly h-screen md:h-auto">
+                <div className="panel text-4xl sm:text-6xl flex my-4 justify-start">
+                    <div className="max-w-4xl flex flex-col">
+                        <div className="text-start">FRAME COFFEE</div>
+                        <div className="overflow-hidden relative h-16">
+                            <div className="text-path absolute flex space-x-4 whitespace-nowrap">
+                                <span className="text-xl font-bold">E-commerce Website | </span>
+                                <span className="text-xl font-bold">React | </span>
+                                <span className="text-xl font-bold">Express | </span>
+                                <span className="text-xl font-bold">MongoDB | </span>
+                                <span className="text-xl font-bold">Node.js | </span>
+                                <span className="text-xl font-bold">Scroll Animation | </span>
+                                <span className="text-xl font-bold">E-commerce Website | </span>
+                                <span className="text-xl font-bold">React | </span>
+                                <span className="text-xl font-bold">Express | </span>
+                                <span className="text-xl font-bold">MongoDB | </span>
+                                <span className="text-xl font-bold">Node.js | </span>
+                                <span className="text-xl font-bold">Scroll Animation | </span>
+                            </div>
+                        </div>
+                        <div>
+                            <img src={frame} alt="frame coffee" />
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div className="flex flex-col justify-evenly h-screen">
-                <div className="panel text-4xl sm:text-6xl flex-col m-2 h-20 items-center">
-                    <div className="text-start">FRAME COFFEE</div>
-                    {/* <div>
-                        <img src={frame} alt="frame coffee" />
-                    </div> */}
-                </div>
-                <div className="panel text-4xl sm:text-6xl flex-col m-2 yellow h-28 items-center">
-                    <div className="text-end">YMSHIN.COM</div>
-                    {/* <div>
-                        <img src={ym} alt="frame coffee" />
-                    </div> */}
+                <div className="panel text-4xl sm:text-6xl flex my-4 justify-end">
+                    <div className="max-w-4xl flex flex-col">
+                        <div className="text-end">YMSHIN.COM</div>
+                        <div className="overflow-hidden relative h-16">
+                            <div className="text-path absolute flex space-x-4 whitespace-nowrap">
+                                <span className="text-xl font-bold">First Portfolio Website | </span>
+                                <span className="text-xl font-bold">Vanilla Javascript | </span>
+                                <span className="text-xl font-bold">HTML | </span>
+                                <span className="text-xl font-bold">CSS | </span>
+                                <span className="text-xl font-bold">First Portfolio Website | </span>
+                                <span className="text-xl font-bold">Vanilla Javascript | </span>
+                                <span className="text-xl font-bold">HTML | </span>
+                                <span className="text-xl font-bold">CSS | </span>
+                                <span className="text-xl font-bold">First Portfolio Website | </span>
+                                <span className="text-xl font-bold">Vanilla Javascript | </span>
+                                <span className="text-xl font-bold">HTML | </span>
+                                <span className="text-xl font-bold">CSS | </span>
+                            </div>
+                        </div>
+                        <div>
+                            <img src={ym} alt="frame coffee" />
+                        </div>
+                    </div>
                 </div>
             </div>
 
