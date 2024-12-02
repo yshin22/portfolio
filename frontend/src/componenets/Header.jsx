@@ -26,7 +26,7 @@ const Header = () => {
         |
       </div>
       <div className="phrase t2 m-2 text-sm sm:text-xl">
-        ONE AND ONLY
+        DARK/ LIGHT
       </div>
     </header>
   )

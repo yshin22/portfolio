@@ -14,194 +14,157 @@ const HomeScreen = () => {
     useEffect(() => {
         const ctx = gsap.context(() => {
                 const mm = gsap.matchMedia();
+                const breakPoint = 576;
 
-                mm.add("all", () => {
-                    const tl = gsap.timeline();
-                    tl.from(".phrase", { 
-                        y: 160, 
-                        duration: 0.8, 
-                        ease: "back", 
-                        stagger: 0.1,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
+                mm.add(
+                    {
+                        isDesktop: `(min-width: 1024px)`,
+                        isLaptop: `(max-width: 1023px)`,
+                        isMobile: `(max-width: ${breakPoint - 1}px)`,
+                    },
+                    (context) => {
+                        let { isDesktop, isMobile } = context.conditions;
 
-                    const textPath = document.querySelector(".text-path");
-                    const textWidth = textPath.offsetWidth; // Total width of the scrolling text
-                    // const containerWidth = document.querySelector(".overflow-hidden").offsetWidth;
-                
-                    // Set initial position
-                    gsap.set(textPath, { x: 0 });
-
-                    const marquee = gsap.timeline({ repeat: -1 });
-  
-                    marquee.to(".text-path", {
-                        x: -textWidth / 2,
-                        duration: 10,
-                        ease: "none",
-                        repeat: -1,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
-
-                    // Animating the "ABOUT" section
-                    gsap.from(".about", {
-                        scrollTrigger: {
-                            trigger: ".about",
-                            start: "top bottom",
-                            end: "top +=700",
-                            scrub: 1,
-                            // markers: true,
-                        },
-                        xPercent: -100,
-                        duration: 3,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
-
-                    gsap.from(".works", {
-                        scrollTrigger: {
-                            trigger: ".works",
-                            start: "top bottom",
-                            end: "top +=700",
-                            scrub: 1,
-                            // markers: true
-
-                        },
-                        xPercent: 100,
-                        duration: 3,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
-
-                    // Animating lines
-                    gsap.from(".line span", {
-                        scrollTrigger: {
-                            trigger: ".line span",
-                            scrub: 2,
-                            start: "top bottom",
-                            end: "-=200 center",
-                            // markers: true
-                        },
-                        y: 100,
-                        ease: "power3.out",
-                        duration: 5,
-                        stagger: 0.5,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
-
-                    gsap.from(".contact", { 
-                        y: 160, 
-                        duration: 0.8, 
-                        ease: "back", 
-                        stagger: 0.1,
-                        scrollTrigger: {
-                            trigger: ".contact",
-                            start: "top bottom",
-                            end: "top +=700",
-                            scrub: 1,
-                            // markers: true,
-                        },
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
-                })
-
-                // Define animations for different screen sizes
-                mm.add("(min-width: 576px)", () => {
-                    
-                    const phraseScrollTl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: ".phrase",
-                            start: "+=200 center",
-                            end: "bottom",
-                            scrub: 1,
-                            // markers: true,
-                        },
-                    });
-
-                    phraseScrollTl.to(".phrase", {
-                        xPercent: 200,
-                        duration: 3,
-                        stagger: 0.2,
-                    });
-
-                    const tl = gsap.timeline()
-                    tl.from(".prof-pic", { xPercent: -100, duration: 0.3, ease: "none" })
-                    .to(".prof-pic", {
-                        scrollTrigger: {
-                            trigger: ".prof-pic",
-                            start: "bottom center",
-                            end: "bottom",
-                            scrub: 1,
-                            // markers: true
-
-                        },
-                        yPercent: 250,
-                    })
-
-                    // Animating panels
-                    gsap.utils.toArray(".panel").forEach((panel, i) => {
-                        gsap.from(panel, {
-                            xPercent: i % 2 === 0 ? 150 : -150,
+                        const prof = gsap.timeline();
+                        prof.from(".prof-pic", { xPercent: -100, duration: 0.3, ease: "none" })
+                        .to(".prof-pic", {
                             scrollTrigger: {
-                                trigger: panel,
-                                start: "top center",
-                                end: "center center",
+                                trigger: ".prof-pic",
+                                start: "bottom center",
+                                end: "bottom",
                                 scrub: 1,
                                 // markers: true
+    
+                            },
+                            yPercent: isDesktop ? 250 : 150,
+                        })
+
+                        gsap.from(".phrase", { 
+                            y: 160, 
+                            duration: 0.8, 
+                            ease: "back", 
+                            stagger: 0.1,
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+
+                        const phraseScrollTl = gsap.timeline({
+                            scrollTrigger: {
+                                trigger: ".phrase",
+                                start: isDesktop ? "bottom +=500" : "+=100 +=300",
+                                end: isDesktop ? "bottom" : "bottom top",
+                                scrub: 1,
+                                markers: true,
                             },
                         });
-                    });
-                  });
-                
-                  // Mobile screens
-                  mm.add("(max-width: 575px)", () => {
+    
+                        phraseScrollTl.to(".phrase", {
+                            xPercent: 200,
+                            duration: 3,
+                            stagger: 0.2,
+                        });
 
-                    const phraseScrollTl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: ".phrase",
-                            start: "bottom center",
-                            end: "bottom",
-                            scrub: 1,
-                            // markers: true,
-                        },
-                    });
-                    phraseScrollTl.to(".phrase", {
-                        xPercent: 200,
-                        duration: 3,
-                        stagger: 0.1,
-                        onComplete: () => {
-                            gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                          }
-                    });
+                        const textPath = document.querySelector(".text-path");
+                        const textWidth = textPath.offsetWidth; 
+                    
+                        gsap.set(textPath, { x: 0 });
 
-                    // Animating panels
-                    gsap.utils.toArray(".panel").forEach((panel, i) => {
-                        gsap.from(panel, {
-                            xPercent: i % 2 === 0 ? 110 : -110,
+                        const marquee = gsap.timeline({ repeat: -1 });
+    
+                        marquee.to(".text-path", {
+                            x: -textWidth / 2,
+                            duration: 10,
+                            ease: "none",
+                            repeat: -1,
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+
+                        gsap.from(".about", {
                             scrollTrigger: {
-                                trigger: panel,
-                                start: "center bottom",
-                                end: "center +=700",
+                                trigger: ".about",
+                                start: "top bottom",
+                                end: "top +=700",
+                                scrub: 1,
+                                // markers: true,
+                            },
+                            xPercent: -100,
+                            duration: 3,
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+
+                        gsap.from(".works", {
+                            scrollTrigger: {
+                                trigger: ".works",
+                                start: "top bottom",
+                                end: "top +=700",
                                 scrub: 1,
                                 // markers: true
 
+                            },
+                            xPercent: 100,
+                            duration: 3,
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+
+                        gsap.from(".contact", { 
+                            y: 160, 
+                            duration: 0.8, 
+                            ease: "back", 
+                            stagger: 0.1,
+                            scrollTrigger: {
+                                trigger: ".contact",
+                                start: "top bottom",
+                                end: "top +=700",
+                                scrub: 1,
+                                // markers: true,
                             },
                             onComplete: () => {
-                                gsap.set(".element", { willChange: "auto" }); // Resets will-change using GSAP's set method
-                              }
+                                gsap.set(".element", { willChange: "auto" });
+                            }
                         });
-                    });
-                  });
+
+                        // Animating lines
+                        gsap.from(".line span", {
+                            scrollTrigger: {
+                                trigger: ".line span",
+                                scrub: 2,
+                                start: "top bottom",
+                                end: "-=200 center",
+                                // markers: true
+                            },
+                            y: 100,
+                            ease: "power3.out",
+                            duration: 5,
+                            stagger: 0.5,
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
     
+                        // Animating panels
+                        gsap.utils.toArray(".panel").forEach((panel, i) => {
+                            gsap.from(panel, {
+                                xPercent: isDesktop ? (i % 2 === 0 ? 150 : -150) :
+                                (i % 2 === 0 ? 110 : -110),
+                                scrollTrigger: {
+                                    trigger: panel,
+                                    start: isDesktop ? "top center" : "center bottom",
+                                    end: isDesktop ? "center center" : "center +=700",
+                                    scrub: 1,
+                                    // markers: true
+                                },
+                            });
+                        });
+                    }
+                )
+
         }, container);
 
         return () =>{
@@ -212,105 +175,105 @@ const HomeScreen = () => {
     return (
         <div ref={container} className="container mx-auto px-4">
             <div className="flex justify-center h-screen items-center">
-                <div className="frame hidden sm:block">
-                    <img src={profPic} alt="my prof pic" className="prof-pic max-w-80 m-4" />
+                <div className="frame hidden md:block">
+                    <img src={profPic} alt="my prof pic" className="prof-pic max-w-60 lg:max-w-80 m-4" />
                 </div>
                 <div>
-                    <div className="phrase text-start text-5xl sm:text-8xl hover:text-red-500 cursor-pointer">
-                        FULL STACK
+                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
+                        DEVELOPER
                     </div>
-                    <div className="phrase text-start text-5xl sm:text-8xl hover:text-red-500 cursor-pointer">
+                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
                         WEB DEV
                     </div>
-                    <div className="phrase text-start text-5xl sm:text-8xl hover:text-red-500 cursor-pointer">
+                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
                         CAR ENTHUSIAST
                     </div>
-                    <div className="phrase text-start text-5xl sm:text-8xl hover:text-red-500 cursor-pointer">
+                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
                         DOG DAD
                     </div>
                 </div>
             </div>
 
             <div className="flex flex-col h-96 md:h-screen">
-                <div className="about headline text-transparent text-7xl sm:text-10xl flex justify-start">
+                <div className="about headline text-transparent text-7xl md:text-9xl lg:text-10xl flex justify-start">
                     ABOUT
                 </div>
 
                 <div className="about-me flex flex-col flex-grow justify-center">
-                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
                         <span className="absolute">Hi, my name is Yeoungmin,</span>
                     </div>
-                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
                         <span className="absolute">a creative Full Stack Developer</span>
                     </div>
-                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
                         <span className="absolute">Hi, my name is Yeoungmin,</span>
                     </div>
-                    <div className="line text-xl sm:text-7xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-6xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
                         <span className="absolute">a creative Full Stack Developer</span>
                     </div>
                 </div>
             </div>
 
-            <div className="works headline text-transparent text-7xl sm:text-10xl flex justify-end my-4">
+            <div className="works headline text-transparent text-7xl sm:text-8xl md:text-9xl lg:text-10xl flex justify-end my-4">
                 WORKS
             </div>
 
             <div className="flex flex-col justify-evenly h-screen md:h-auto">
-                <div className="panel text-4xl sm:text-6xl flex my-4 justify-start">
+                <div className="panel text-3xl sm:text-4xl md:text-5xl flex my-4 justify-start">
                     <div className="max-w-4xl flex flex-col">
                         <div className="text-start">FRAME COFFEE</div>
                         <div className="overflow-hidden relative h-16">
-                            <div className="text-path absolute flex space-x-4 whitespace-nowrap">
-                                <span className="text-xl font-bold">E-commerce Website | </span>
-                                <span className="text-xl font-bold">React | </span>
-                                <span className="text-xl font-bold">Express | </span>
-                                <span className="text-xl font-bold">MongoDB | </span>
-                                <span className="text-xl font-bold">Node.js | </span>
-                                <span className="text-xl font-bold">Scroll Animation | </span>
-                                <span className="text-xl font-bold">E-commerce Website | </span>
-                                <span className="text-xl font-bold">React | </span>
-                                <span className="text-xl font-bold">Express | </span>
-                                <span className="text-xl font-bold">MongoDB | </span>
-                                <span className="text-xl font-bold">Node.js | </span>
-                                <span className="text-xl font-bold">Scroll Animation | </span>
+                            <div className="text-path absolute flex space-x-4 whitespace-nowrap text-base sm:text-lg md:text-xl">
+                                <span className="font-bold">E-commerce Website | </span>
+                                <span className="font-bold">React | </span>
+                                <span className="font-bold">Express | </span>
+                                <span className="font-bold">MongoDB | </span>
+                                <span className="font-bold">Node.js | </span>
+                                <span className="font-bold">Scroll Animation | </span>
+                                <span className="font-bold">E-commerce Website | </span>
+                                <span className="font-bold">React | </span>
+                                <span className="font-bold">Express | </span>
+                                <span className="font-bold">MongoDB | </span>
+                                <span className="font-bold">Node.js | </span>
+                                <span className="font-bold">Scroll Animation | </span>
                             </div>
                         </div>
                         <div>
-                            <img src={frame} alt="frame coffee" />
+                            <img src={frame} alt="frame coffee" className="" />
                         </div>
                     </div>
                 </div>
-                <div className="panel text-4xl sm:text-6xl flex my-4 justify-end">
+                <div className="panel text-3xl sm:text-4xl md:text-5xl flex my-4 justify-end">
                     <div className="max-w-4xl flex flex-col">
                         <div className="text-end">YMSHIN.COM</div>
                         <div className="overflow-hidden relative h-16">
-                            <div className="text-path absolute flex space-x-4 whitespace-nowrap">
-                                <span className="text-xl font-bold">First Portfolio Website | </span>
-                                <span className="text-xl font-bold">Vanilla Javascript | </span>
-                                <span className="text-xl font-bold">HTML | </span>
-                                <span className="text-xl font-bold">CSS | </span>
-                                <span className="text-xl font-bold">First Portfolio Website | </span>
-                                <span className="text-xl font-bold">Vanilla Javascript | </span>
-                                <span className="text-xl font-bold">HTML | </span>
-                                <span className="text-xl font-bold">CSS | </span>
-                                <span className="text-xl font-bold">First Portfolio Website | </span>
-                                <span className="text-xl font-bold">Vanilla Javascript | </span>
-                                <span className="text-xl font-bold">HTML | </span>
-                                <span className="text-xl font-bold">CSS | </span>
+                            <div className="text-path absolute flex space-x-4 whitespace-nowrap text-base sm:text-lg md:text-xl">
+                                <span className="font-bold">First Portfolio Website | </span>
+                                <span className="font-bold">Vanilla Javascript | </span>
+                                <span className="font-bold">HTML | </span>
+                                <span className="font-bold">CSS | </span>
+                                <span className="font-bold">First Portfolio Website | </span>
+                                <span className="font-bold">Vanilla Javascript | </span>
+                                <span className="font-bold">HTML | </span>
+                                <span className="font-bold">CSS | </span>
+                                <span className="font-bold">First Portfolio Website | </span>
+                                <span className="font-bold">Vanilla Javascript | </span>
+                                <span className="font-bold">HTML | </span>
+                                <span className="font-bold">CSS | </span>
                             </div>
                         </div>
                         <div>
-                            <img src={ym} alt="frame coffee" />
+                            <img src={ym} alt="frame coffee" className="" />
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="contact headline text-transparent text-7xl sm:text-9xl flex justify-start">
+            <div className="contact headline text-transparent text-7xl md:text-9xl flex justify-start">
                 CONNECT 
             </div>
-            <div className="contact headline text-transparent text-7xl sm:text-9xl flex justify-start">
+            <div className="contact headline text-transparent text-7xl md:text-9xl flex justify-start">
                 WITH ME
             </div>
         </div>
