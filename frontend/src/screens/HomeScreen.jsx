@@ -25,25 +25,60 @@ const HomeScreen = () => {
                     (context) => {
                         let { isDesktop, isMobile } = context.conditions;
 
-                        const prof = gsap.timeline();
-                        prof.from(".prof-pic", { xPercent: -100, duration: 0.3, ease: "none" })
-                        .to(".prof-pic", {
-                            scrollTrigger: {
-                                trigger: ".prof-pic",
-                                start: "bottom center",
-                                end: "bottom",
-                                scrub: 1,
-                                // markers: true
+                        // const prof = gsap.timeline();
+                        // prof.from(".prof-pic", { xPercent: -100, duration: 0.3, ease: "none" })
+                        // .to(".prof-pic", {
+                        //     scrollTrigger: {
+                        //         trigger: ".prof-pic",
+                        //         start: "bottom center",
+                        //         end: "bottom",
+                        //         scrub: 1,
+                        //         // markers: true
     
-                            },
-                            yPercent: 250,
-                        })
+                        //     },
+                        //     yPercent: 250,
+                        // })
 
-                        gsap.from(".phrase", { 
-                            y: 160, 
-                            duration: 0.8, 
+                        gsap.from(".home_title_1 span", { 
+                            y: 100, 
+                            duration: 0.9, 
                             ease: "back", 
-                            stagger: 0.1,
+                            stagger: {
+                                amount: 0.5
+                            },
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+                        gsap.from(".home_title_2 span", { 
+                            y: 100, 
+                            duration: 0.6, 
+                            ease: "back", 
+                            stagger: {
+                                amount: 0.5
+                            },                            
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+                        gsap.from(".home_title_3 span", { 
+                            y: 100, 
+                            duration: 0.6, 
+                            ease: "back", 
+                            stagger: {
+                                amount: 0.5
+                            },  
+                            onComplete: () => {
+                                gsap.set(".element", { willChange: "auto" });
+                            }
+                        });
+                        gsap.from(".home_title_4 span", { 
+                            y: 100, 
+                            duration: 0.6, 
+                            ease: "back", 
+                            stagger: {
+                                amount: 0.5
+                            },  
                             onComplete: () => {
                                 gsap.set(".element", { willChange: "auto" });
                             }
@@ -51,18 +86,21 @@ const HomeScreen = () => {
 
                         const phraseScrollTl = gsap.timeline({
                             scrollTrigger: {
-                                trigger: ".phrase",
-                                start: isDesktop ? "bottom 20%" : "+=100 +=300",
-                                end: isDesktop ? "bottom" : "bottom top",
+                                trigger: ".phrase span",
+                                start: isDesktop ? "top 20%" : "top +=300",
+                                end: isDesktop ? "+=500 top" : "bottom top",
                                 scrub: 1,
-                                // markers: true,
+                                markers: true,
                             },
                         });
     
-                        phraseScrollTl.to(".phrase", {
-                            xPercent: 200,
-                            duration: 3,
-                            stagger: 0.2,
+                        phraseScrollTl.to(".phrase span", {
+                            yPercent: -1000,
+                            duration: 0.5,
+                            stagger: {
+                                amount: 0.7
+                            },  
+                            ease: 'power2.inOut'
                         });
 
                         const textPath = document.querySelector(".text-path");
@@ -175,18 +213,49 @@ const HomeScreen = () => {
     return (
         <div ref={container} className="container mx-auto px-4">
             <div className="flex justify-center h-screen items-center">
-                <div className="frame overflow-hidden hidden md:block">
+                {/* <div className="frame overflow-hidden hidden md:block">
                     <img src={profPic} alt="my prof pic" className="prof-pic max-w-60 lg:max-w-80 m-4" />
-                </div>
+                </div> */}
                 <div>
-                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
-                        CREATIVE <br /> DEVELOPER
+                    <div className="phrase home_title_1 headline text-transparent text-start text-6xl md:text-8xl lg:text-10xl hover:text-red-500 cursor-pointer flex justify-end">
+                        <span>Y</span>
+                        <span>E</span>
+                        <span>O</span>
+                        <span>U</span>
+                        <span>N</span>
+                        <span>G</span>
+                        <span>M</span>
+                        <span>I</span>
+                        <span>N</span>
                     </div>
-                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
-                        CAR ENTHUSIAST
+                    <div className="phrase home_title_3 headline text-transparent text-start text-6xl md:text-8xl lg:text-8xl hover:text-red-500 cursor-pointer flex justify-start sm:justify-end">
+                        <span>S</span>
+                        <span>H</span>
+                        <span>I</span>
+                        <span>N</span>
                     </div>
-                    <div className="phrase text-start text-5xl md:text-6xl lg:text-8xl hover:text-red-500 cursor-pointer">
-                        DOG DAD
+                    <div className="phrase home_title_2 text-start text-6xl md:text-8xl lg:text-8xl hover:text-red-500 cursor-pointer flex justify-start">
+                        <span className="italic">C</span>
+                        <span className="italic">R</span>
+                        <span className="italic">E</span>
+                        <span className="italic">A</span>
+                        <span className="italic">T</span>
+                        <span className="italic">I</span>
+                        <span className="italic">V</span>
+                        <span className="italic">E</span>
+
+
+                    </div>
+                    <div className="phrase home_title_4 text-start text-6xl md:text-8xl lg:text-10xl hover:text-red-500 cursor-pointer flex justify-start">
+                        <span className="italic">D</span>
+                        <span className="italic">E</span>
+                        <span className="italic">V</span>
+                        <span className="italic">E</span>
+                        <span className="italic">L</span>
+                        <span className="italic">O</span>
+                        <span className="italic">P</span>
+                        <span className="italic">E</span>
+                        <span className="italic">R</span>
                     </div>
                 </div>
             </div>
@@ -197,32 +266,32 @@ const HomeScreen = () => {
                 </div>
 
                 <div className="about-me flex flex-col flex-grow justify-center px-4 my-5 md:my-0">
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">Hi, my name is Yeoungmin,</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">a creative developer </span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">crafting memorable user experiences</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">and functionality to websites</span>
                     </div>
                     <br />
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">I started with vanilla Javascript,</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">messed around with css animations,</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">did backend-dev from scratch, </span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute">and exploring possibilities</span>
                     </div>
-                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden flex justify-center">
+                    <div className="line text-xl sm:text-3xl md:text-4xl lg:text-5xl z-36 h-10 md:h-20 relative overflow-hidden">
                         <span className="absolute"> with GSAP and Three.js</span>
                     </div>
 
