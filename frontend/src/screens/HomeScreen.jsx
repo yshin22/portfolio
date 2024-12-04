@@ -90,7 +90,7 @@ const HomeScreen = () => {
                                 start: isDesktop ? "top 20%" : "top +=300",
                                 end: isDesktop ? "+=500 top" : "bottom top",
                                 scrub: 1,
-                                markers: true,
+                                // markers: true,
                             },
                         });
     
